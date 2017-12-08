@@ -1,3 +1,10 @@
+/*
+* Program name: MineSweeper.java
+* Author: Ming Gong
+* Date: Dec 8th, 2017
+* Description: Minesweeper game with original rules.
+* */
+
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -5,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -12,6 +20,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+
 
 
 public class MineSweeper extends Application {
@@ -31,6 +40,7 @@ public class MineSweeper extends Application {
     public void start(Stage primaryStage) {
          scene = new Scene(gameBoard());
          primaryStage.setScene(scene);
+         primaryStage.getIcons().add(new Image("https://github.com/Martin-Ocean/my-avatar/blob/master/myAvatar%20200x200.png"));
          primaryStage.show();
     }
 
@@ -73,8 +83,9 @@ public class MineSweeper extends Application {
         board = new board(rows, columns, root, .2);
 
         VBox vb = new VBox(10);
-
-        vb.getChildren().addAll(scoreLabel,score);
+        Button quit = new Button("Quit");
+        quit.setOnMouseClicked(e -> (((Stage) quit.getScene().getWindow())).close());
+        vb.getChildren().addAll(scoreLabel,score,quit);
         vb.setMargin(scoreLabel, new Insets(20,20,0,20));
         vb.setMargin(score, new Insets(0,20,20,20));
         vb.setAlignment(Pos.CENTER);
